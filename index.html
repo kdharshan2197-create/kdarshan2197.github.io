@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: #e0e0e0;
+            background: #0a0a0a;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        header {
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #333;
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #ff0000;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            transition: transform 0.3s;
+        }
+
+        .profile-img:hover {
+            transform: rotate(360deg);
+        }
+
+        h1 {
+            color: #ffffff;
+            margin-bottom: 8px;
+            font-size: 2.5em;
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            color: #999;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .fun-badge {
+            display: inline-block;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-top: 12px;
+            color: #ff0000;
+            font-size: 0.9em;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            color: #999;
+            font-size: 0.95em;
+        }
+
+        .contact-info a {
+            color: #ff0000;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-info a:hover {
+            color: #ffffff;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            color: #ffffff;
+            margin-bottom: 24px;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .section p {
+            color: #b0b0b0;
+            margin-bottom: 16px;
+        }
+
+        .fun-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .stat-box {
+            background: #111;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #222;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .stat-box:hover {
+            border-color: #ff0000;
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #ff0000;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: #999;
+            font-size: 0.85em;
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .project-card {
+            padding: 24px;
+            border: 1px solid #222;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .project-card:hover {
+            border-color: #ff0000;
+            background: #111;
+        }
+
+        .project-card h3 {
+            color: #ffffff;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .project-card p {
+            color: #999;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .project-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .status-completed {
+            background: #1a3a1a;
+            color: #4ade80;
+        }
+
+        .status-ongoing {
+            background: #3a3a1a;
+            color: #fbbf24;
+        }
+
+        .status-idea {
+            background: #3a1a1a;
+            color: #ff6b6b;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .tech-tag {
+            color: #999;
+            font-size: 0.85em;
+            padding: 4px 0;
+        }
+
+        .tech-tag::before {
+            content: "• ";
+            color: #ff0000;
+        }
+
+        .project-links {
+            margin-top: 12px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .project-link {
+            color: #ff0000;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.2s;
+        }
+
+        .project-link:hover {
+            color: #ffffff;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-top: 24px;
+        }
+
+        .skill-category h3 {
+            color: #ffffff;
+            margin-bottom: 12px;
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            color: #999;
+            padding: 6px 0;
+            font-size: 0.95em;
+        }
+
+        .skill-category li::before {
+            content: "—";
+            color: #ff0000;
+            margin-right: 8px;
+        }
+
+        .education-box {
+            padding: 24px;
+            border: 1px solid #222;
+            border-radius: 8px;
+            border-left: 3px solid #ff0000;
+        }
+
+        .degree {
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 1.1em;
+            margin-bottom: 4px;
+        }
+
+        .school {
+            color: #ff0000;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .date {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+        }
+
+        .interests-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .interest-item {
+            color: #999;
+            padding: 12px 0;
+            font-size: 0.95em;
+        }
+
+        .interest-item::before {
+            content: "→";
+            color: #ff0000;
+            margin-right: 8px;
+        }
+
+        .fun-fact-box {
+            background: #111;
+            border: 1px solid #222;
+            border-left: 3px solid #ff0000;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 12px 0;
+            color: #b0b0b0;
+            font-style: italic;
+        }
+
+        ul.simple-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul.simple-list li {
+            padding: 8px 0;
+            color: #999;
+            font-size: 0.95em;
+        }
+
+        ul.simple-list li::before {
+            content: "—";
+            color: #ff0000;
+            margin-right: 8px;
+        }
+
+        .quote-box {
+            background: #111;
+            border: 1px solid #222;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 24px 0;
+            font-style: italic;
+            color: #999;
+        }
+
+        footer {
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-img">🏎️</div>
+            <h1>Dharshan K</h1>
+            <p class="tagline">Mechanical Engineering Student · Professional Overthinker · F1 Nerd</p>
+            <div class="fun-badge">⚡ Powered by Coffee & Race Highlights</div>
+            <div class="contact-info">
+                <span>kdharshan2197@gmail.com</span>
+                <span>+91 7305613280</span>
+                <a href="https://www.linkedin.com/in/dharshan-k-09546437a" target="_blank">LinkedIn</a>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>👋 Hey, I Build Stuff (Sometimes It Works)</h2>
+            <p>First-year Mechanical Engineering student who unironically enjoys math problems and can name every F1 World Champion since 2000. Currently surviving on instant noodles and YouTube engineering tutorials.</p>
+            <p>My life philosophy: If it doesn't work the first time, call it a prototype. If it still doesn't work, add more duct tape.</p>
+            
+            <div class="fun-stats">
+                <div class="stat-box">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Learning from Mistakes</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">404</div>
+                    <div class="stat-label">Sleep Schedule Not Found</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">F1 Opinions</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">3 AM</div>
+                    <div class="stat-label">Peak Productivity Time</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🔧 Projects (That Didn't Explode)</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <span class="project-status status-completed">✅ It Actually Works!</span>
+                    <h3>🏁 Crankshaft Optimization for Engine Performance</h3>
+                    <p>Designed an improved crankshaft that increases engine thrust in the pistons, making the car go faster! Built the entire thing in Fusion 360. Learned that small changes in crankshaft design can make huge differences in engine performance. Also learned that engines are way more complicated than they look.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Fusion 360</span>
+                        <span class="tech-tag">Engine Design</span>
+                        <span class="tech-tag">CAD Modeling</span>
+                        <span class="tech-tag">Performance Tuning</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://a360.co/4owAlxM" target="_blank" class="project-link">View Crankshaft →</a>
+                        <a href="https://a360.co/43t5hGO" target="_blank" class="project-link">Full Assembly →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <span class="project-status status-ongoing">🚧 Work in Progress (aka Controlled Chaos)</span>
+                    <h3>⚙️ Gear Hobber Arbor Optimization</h3>
+                    <p>Currently working on making a gear hobber arbor more efficient and improving its performance. The challenge? Writing G-codes that are short, sweet, and actually work! Learning CNC programming while trying to optimize machining operations. Updates: Code is getting cleaner, arbor is getting better!</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">G-Code Programming</span>
+                        <span class="tech-tag">CNC Machining</span>
+                        <span class="tech-tag">Optimization</span>
+                        <span class="tech-tag">Manufacturing</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://a360.co/43t5hGO" target="_blank" class="project-link">View Arbor Model →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <span class="project-status status-idea">💡 3 AM Brain Idea</span>
+                    <h3>🚀 Complete Car Engine Modification</h3>
+                    <p>The ultimate dream: Get my hands on an actual car and completely modify the entire engine system. We're talking full custom build—pistons, crankshaft, valves, the whole package. Will it work? Will it be street legal? Will my bank account survive? Questions for future me! But when it happens, it's gonna be legendary.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Engine Rebuilding</span>
+                        <span class="tech-tag">Performance Mods</span>
+                        <span class="tech-tag">Custom Fabrication</span>
+                        <span class="tech-tag">Big Dreams</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🛠️ Skills (aka Things I Google Daily)</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>CAD & Design</h3>
+                    <ul>
+                        <li>Fusion 360 (My go-to tool!)</li>
+                        <li>AutoCAD (Mostly straight lines)</li>
+                        <li>SolidWorks (Learning it)</li>
+                        <li>CATIA (On the list)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Analysis</h3>
+                    <ul>
+                        <li>ANSYS (Makes cool colors)</li>
+                        <li>MATLAB (Error message expert)</li>
+                        <li>CFD (Flow goes whoosh)</li>
+                        <li>FEA (Stress is real)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Workshop</h3>
+                    <ul>
+                        <li>Machining (Without injuries!)</li>
+                        <li>Welding (Sparks are fun)</li>
+                        <li>3D Printing (Layer by layer)</li>
+                        <li>Duct Tape (Universal fix)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Survival Skills</h3>
+                    <ul>
+                        <li>Coffee Making (Advanced level)</li>
+                        <li>AI Prompting (ChatGPT wizard)</li>
+                        <li>Leadership & Team Management</li>
+                        <li>Hackathon Survival</li>
+                        <li>Google-fu mastery</li>
+                        <li>Deadline negotiation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🎓 Education (The Official Part)</h2>
+            <div class="education-box">
+                <div class="degree">B.Tech in Mechanical Engineering</div>
+                <div class="school">Saveetha Engineering College</div>
+                <div class="date">2025 - 2029 (If Everything Goes According to Plan) · Year 1/4</div>
+                <p style="color: #999; font-size: 0.95em;">CGPA: ?/10 (First semester in progress!)</p>
+                <div class="fun-fact-box" style="margin-top: 12px;">
+                    Fun fact: I chose mechanical engineering because I wanted to understand how F1 cars work. Now I understand why they cost millions.
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🏎️ Things I'm Obsessed With</h2>
+            <div class="interests-list">
+                <div class="interest-item">Formula 1 (Every. Single. Race.)</div>
+                <div class="interest-item">Car Design (So many sketches)</div>
+                <div class="interest-item">Aerodynamics (Air go fast)</div>
+                <div class="interest-item">Engine Sounds (V10 forever)</div>
+                <div class="interest-item">Hip-Hop & R&B (Kendrick, Juice, Frank)</div>
+                <div class="interest-item">Hackathons & Competitions</div>
+                <div class="interest-item">AI & Prompt Engineering</div>
+                <div class="interest-item">Leadership & Team Building</div>
+                <div class="interest-item">Motorsports Documentaries</div>
+                <div class="interest-item">Car Photography</div>
+                <div class="interest-item">Racing Games (Virtual practice)</div>
+                <div class="interest-item">Engineering Memes</div>
+                <div class="interest-item">Late Night Music Sessions</div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🏆 Stuff I've Done</h2>
+            <ul class="simple-list">
+                <li>ASME Member (Active in events and competitions)</li>
+                <li>Hackathon enthusiast (Love the challenge!)</li>
+                <li>Workshop training completed (All fingers still attached)</li>
+                <li>Can name all F1 circuits (Useful party trick)</li>
+                <li>AI prompting skills (ChatGPT is my co-pilot)</li>
+                <li>Leadership roles and team projects</li>
+                <li>Mastered the art of 3 AM problem-solving</li>
+                <li>Built stuff that actually works (sometimes)</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>😂 Random Facts You Didn't Ask For</h2>
+            <div class="fun-fact-box">
+                🌙 I do my best Fusion 360 work at 2 AM with Kendrick Lamar, Juice WRLD, or Frank Ocean in my ears. Don't ask me why. It's just science.
+            </div>
+            <div class="fun-fact-box">
+                🏁 My weekends: Wake up → Watch F1 → Analyze race → Argue about tire strategy → Vibe to Kanye → Sleep → Repeat
+            </div>
+            <div class="fun-fact-box">
+                🔧 I've watched "Rush" and "Ford v Ferrari" so many times I can quote them while doing thermodynamics homework
+            </div>
+            <div class="fun-fact-box">
+                ☕ My coffee-to-productivity ratio is scientifically proven (by me) to be optimal at 3 cups per assignment. Bonus points if Juice WRLD is playing.
+            </div>
+            <div class="fun-fact-box">
+                🎯 Life goal: Work for an F1 team and pretend like I'm not internally screaming with excitement every single day
+            </div>
+        </section>
+
+        <div class="quote-box">
+            "The car is the star... but engineers make the star shine." - Me, probably
+        </div>
+
+        <footer>
+            <p>Thanks for stopping by! Now go watch some F1 highlights 🏎️</p>
+            <p>&copy; 2025 Dharshan K · Built with caffeine, chaos, and questionable decisions</p>
+            <p style="margin-top: 8px; font-size: 0.85em;">P.S. If you're reading this, you're officially cooler than my thermodynamics textbook</p>
+        </footer>
+    </div>
+</body>
+</html>
